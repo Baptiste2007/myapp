@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [identifiant, setIdentifiant] = useState("");
+  const [motDePasse, setMotDePasse] = useState("");
+  const [message, setMessage] = useState("");
+
+  function connexion() {
+
+    if (identifiant === "Bat" && motDePasse === "1234") {
+      setMessage("Connexion réussie !");
+    } else {
+      setMessage("Identifiant ou mot de passe incorrect");
+    }
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+
+      <h1>Connexion</h1>
+
+      <input
+        type="text"
+        placeholder="Identifiant"
+        value={identifiant}
+        onChange={(e) => setIdentifiant(e.target.value)}
+      />
+
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        value={motDePasse}
+        onChange={(e) => setMotDePasse(e.target.value)}
+      />
+
+      <button onClick={connexion}>
+        Se connecter
+      </button>
+
+      <p>{message}</p>
+
     </div>
   );
 }
